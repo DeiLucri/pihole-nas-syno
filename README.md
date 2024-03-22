@@ -8,7 +8,7 @@ cd /volume1/docker && mkdir -p pihole/{pihole,dnsmasq.d}
 ```bash
 cd /volume1/docker/pihole && curl -o docker-compose.yml https://raw.githubusercontent.com/DeiLucri/pihole-nas-syno/main/docker-compose.yml
 ```
-3.  Modify the file to change the macvlan network and container ip address
+3.  Modify the file to change the macvlan network, container ip address, password and TimeZone
 4.  Create the container 
 ```bash
 sudo docker-compose up -d
