@@ -16,4 +16,5 @@ sudo docker-compose up -d
 5. Connect via IP and port set on web browser
 
 ## Notes :
-- By default, the Pi-hole container is isolated from the host network, which means it cannot communicate directly with the NAS. This is a security feature of macvlan networks.
+- On the synology nas server, do not modify the DNS server and indicate the Pihole container. *By default, the Pi-hole container is isolated from the host network, which means it cannot communicate directly with the NAS. This is a security feature of macvlan networks**
+
