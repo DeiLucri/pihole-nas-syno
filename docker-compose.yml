@@ -1,0 +1,40 @@
+services:
+  pihole:
+    image: pihole/pihole:latest
+    container_name: pihole
+    cap_add:
+      - CAP_NET_RAW # Allows the container to use RAW and PACKET sockets
+      - CAP_NET_BIND_SERVICE # Allows the container to bind to privileged ports (port numbers less than 1024)
+      - CAP_CHOWN # Allows the container to change the user (UID) and group (GID) identifiers of file
+ # Environment variables to set in the container
+    environment:
+      - TZ=Europe/Paris # Timezone
+      - WEBPASSWORD=Pa$$word123 # Password for Pi-hole's web interface
+      - DNSMASQ_LISTENING=local # dnsmasq configuration to listen only on the local interface
+      - WEB_PORT=8000 # Port for the web interface
+      - DNSMASQ_USER=pihole # User for dnsmasq
+      - FTLCONF_LOCAL_IPV4=192.168.1.200 # Local IP address for FTL
+
+# Volumes to mount in the container
+    volumes:
+      - /volume1/docker/pihole/dnsmasq.d:/etc/dnsmasq.d
+      - /volume1/docker/pihole/pihole:/etc/pihole
+      
+    networks:
+      macvlan: # Name of the network
+        ipv4_address: 192.168.1.200 # IP address of the container on this network
+    restart: always
+
+# Create the network macvlan
+networks:
+  macvlan:
+    name: macvlan
+    driver: macvlan
+    driver_opts: # Options for the network driver
+      parent: ovs_eth0 # Package Virtual Machine Manager installed = ovs_eth0, not installed = eth0
+# Information of your local network, example with a local network 192.168.1.0 
+    ipam:
+      config:
+        - subnet: "192.168.1.0/24" # Subnet for the network
+          ip_range: "192.168.1.254/24" # IP range to use for the network
+          gateway: "192.168.1.1" # Gateway of network
