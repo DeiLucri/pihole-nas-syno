@@ -1,4 +1,4 @@
-# Docker-compose file for creating a pihole container on a synology nas
+# Docker-compose file for creating a pihole container on a synology nas with macvlan network 
 ## SSH
 1. Create the folders needed for pihole, generally on Syno NAS, the docker directory is /volume1/docker/
 ```bash
