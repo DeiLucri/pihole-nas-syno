@@ -2,7 +2,7 @@
 ## SSH
 1. Create the folders needed for pihole, generally on Syno NAS, the docker directory is /volume1/docker/
 ```bash
-cd /volume1/docker && mkdir -p pihole/pihole pihole/dnsmasq.d
+cd /volume1/docker && mkdir -p pihole/{pihole,dnsmasq.d}
 ```
 2. Download docker-compose.yml to /volume1/docker/pihole
 ```bash
